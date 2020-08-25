@@ -14,9 +14,16 @@
 </head>
 <body>
 
+{% if user.is_authenticated %}
+    Hello, {{ user.username }}
+{% endif %}
+
 <div style="margin: 10px 0px;">
     <a href="{% url 'BlogCreate' %}">
         <button>New Blog</button>
+    </a>
+    <a href="{% url 'Logout' %}">
+        <button>Logout</button>
     </a>
 </div>
 
