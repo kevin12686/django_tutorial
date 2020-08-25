@@ -29,7 +29,7 @@
     <tbody>
     {% for object in object_list %}
         <tr>
-            <td>{{ object.title }}</td>
+            <td><a href="{% url 'BlogUpdate' object.pk %}">{{ object.title }}</a></td>
             <td>{{ object.content }}</td>
             <td>{{ object.editTime }}</td>
         </tr>

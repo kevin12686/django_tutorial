@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from rest_framework.viewsets import ModelViewSet
 from .models import Blog
 from .serializers import BlogSerializer
@@ -22,6 +22,15 @@ class BlogList(ListView):
 
 
 class BlogCreate(CreateView):
+    model = Blog
+    fields = '__all__'
+    template_name = 'form.html'
+
+    def get_success_url(self):
+        return reverse('BlogList')
+
+
+class BlogUpdate(UpdateView):
     model = Blog
     fields = '__all__'
     template_name = 'form.html'
