@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView
 from rest_framework.viewsets import ModelViewSet
 from .models import Blog
@@ -21,7 +22,7 @@ class BlogList(ListView):
     template_name = 'blogList.html'
 
 
-class BlogCreate(CreateView):
+class BlogCreate(LoginRequiredMixin, CreateView):
     model = Blog
     fields = '__all__'
     template_name = 'form.html'
@@ -30,7 +31,7 @@ class BlogCreate(CreateView):
         return reverse('BlogList')
 
 
-class BlogUpdate(UpdateView):
+class BlogUpdate(LoginRequiredMixin, UpdateView):
     model = Blog
     fields = '__all__'
     template_name = 'form.html'
